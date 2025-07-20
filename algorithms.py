@@ -168,7 +168,7 @@ class BlackjackAlgorithm:
             else:
                 file_number += 1
             
-        complete_file_name = file_name + divider + file_number + ".json"
+        complete_file_name = file_name + divider + str(file_number) + ".json"
             
         if file_number != "" and file_name_yn == "y":
             print("A file of that name already exists.")
