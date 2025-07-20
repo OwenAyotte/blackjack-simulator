@@ -111,9 +111,9 @@ def dealer_hits(dealer_hand, non_busted_hands, betting_manager):
     return 0
 
 
-def print_and_score_hands(hands, multiplier, betting_manager):
-    """Prints the hands given to it, scores it, and returns the payout. 
-    Handles hands that are scored after the dealer has hit, opposed to ones such as blackjacks and busts."""
+def handle_misc_hands(hands, multiplier, betting_manager):
+    """Handles hands that are scored after the dealer has hit, opposed to ones such as blackjacks and busts. 
+    Returns the payout."""
     if not hands:
         return 0
     
@@ -172,7 +172,7 @@ def play_hand(hand, dealer_hand, deck, betting_manager, algorithm):
         if failed_action: #if an action has failed, the player is forced to stand
             #later iterations of this code may allow for algorithms to handle such actions themselves, but this is the most direct way to do so
             #besides, in most cases the algorithms are simple enough that such simple handling is fitting
-            player_selection = "4" 
+            player_selection = algorithm.second_choice(hand, dealer_hand)
 
 
 
@@ -206,6 +206,8 @@ def play_hand(hand, dealer_hand, deck, betting_manager, algorithm):
         elif player_selection == "4": #STAND
             #Set standing to True, ends loop and lets dealer start hitting
             hand.stand()
+
+        
 
         
 

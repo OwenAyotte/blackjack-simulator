@@ -67,7 +67,7 @@ class BlackjackAlgorithm:
 
 
 
-        bet = self.base_bet * self.betting_alg.get_bet_multiplier(self.running_count)
+        bet = self.base_bet * self.betting_alg.get_bet_multiplier(true_count)
         bet = round(bet)  # Round to integer
         if bet < 1:
             bet = 1 # Ensure minimum bet is 1
@@ -192,9 +192,15 @@ class SelectionAlgorithm:
         This method should be overridden by subclasses."""
         raise NotImplementedError("This method should be overridden by subclasses.")
     
+    def second_choice(self, hand, dealer_hand):
+        """Returns a second choice if other choice fails due to not having enough chips to double down/split.
+        Default implementation returns '4' (stand), but subclasses can override this for custom behavior."""
+        return "4"
+    
     def description(self):
         """Returns a description of the algorithm."""
         return "- No description. subclass must implement this method."
+    
     
     def __str__(self):
         return "Default Selection Algorithm (do not use this!)"

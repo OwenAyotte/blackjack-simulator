@@ -1,6 +1,6 @@
 from blackjack_core.blackjack_classes import Deck, Hand
 from blackjack_core.utility import clear_screen, continue_prompt, unpack_hands, sort_hands, BettingManager
-from blackjack_core.game_logic import play_hand, split_hand, calculate_blackjack_payout, dealer_hits, print_and_score_hands
+from blackjack_core.game_logic import play_hand, split_hand, calculate_blackjack_payout, dealer_hits, handle_misc_hands
 from blackjack_core.constants import MAX_DECKS
 
 """
@@ -91,7 +91,7 @@ def blackjack_round(deck, betting_manager, algorithm):
     sorted_hands = sort_hands(non_busted_hands, dealer_hand) #sorts hands into losing, tieing and winning hands
 
     for i in range(len(sorted_hands)):
-        payout += print_and_score_hands(sorted_hands[i], i, betting_manager)
+        payout += handle_misc_hands(sorted_hands[i], i, betting_manager)
                 
 
     return payout
@@ -190,7 +190,7 @@ def deck_input_validation(deck_amount, deck_exists):
 
 
 def main():
-    LINK = "LINK TO BLACKJACK PROGRAM DO NOT FORGET DO NOT FORGET"  
+    LINK = "https://github.com/OwenAyotte/Blackjack"  
 
     print("Sorry, it would appear that you are trying to run the blackjack.py file directly.")
     print("This version of blackjack.py is designed to be run through the betting_simulation.py file, which will handle the algorithm selection and other setup.")
